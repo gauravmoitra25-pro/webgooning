@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A personal page about Kolkata — Howrah Bridge, the Victoria Memorial, and rosogolla." />
+<meta name="theme-color" content="#1B1512" />
+<title>Kolkata — A Native Place</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;0,900;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ---------- Tokens ---------- */
+  :root {
+    --bg:        #1B1512;
+    --bg-panel:  #241A13;
+    --ivory:     #F3E9D8;
+    --ivory-dim: #C7B79E;
+    --brick:     #B9503F;
+    --marigold:  #E5A03C;
+    --teal:      #3A7378;
+    --line:      rgba(243, 233, 216, 0.14);
+
+    --serif: 'Fraunces', Georgia, serif;
+    --sans:  'Work Sans', -apple-system, Segoe UI, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: auto;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { color: inherit; }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--marigold);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+  }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; margin: 0; }
+
+  p { margin: 0 0 1em; max-width: 60ch; }
+  p:last-child { margin-bottom: 0; }
+
+  .eyebrow-caption {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ivory-dim);
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px clamp(20px, 5vw, 56px);
+    transition: background-color 0.35s ease, border-color 0.35s ease,
+                backdrop-filter 0.35s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background-color: rgba(27, 21, 18, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom-color: var(--line);
+  }
+  .nav-mark {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: clamp(16px, 3vw, 32px);
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--ivory-dim);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--ivory); }
+  @media (max-width: 560px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    background-image:
+      linear-gradient(180deg, rgba(27,21,18,0.25) 0%, rgba(27,21,18,0.55) 55%, rgba(27,21,18,0.94) 100%),
+      linear-gradient(150deg, var(--teal), var(--bg)),
+      url('kolkata.jpg');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat;
+  }
+  @media (min-width: 768px) {
+    .hero { background-attachment: fixed, scroll, scroll; }
+  }
+  .hero-inner {
+    padding-bottom: clamp(48px, 8vh, 96px);
+    width: 100%;
+  }
+  .hero h1 {
+    font-size: clamp(3.4rem, 12vw, 7.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: rise 0.9s ease-out 0.15s forwards;
+  }
+  .hero-sub {
+    margin-top: 18px;
+    max-width: 42ch;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--ivory-dim);
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.9s ease-out 0.4s forwards;
+  }
+  .hero-cue {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--ivory-dim);
+    opacity: 0;
+    animation: fade 0.9s ease-out 0.9s forwards;
+  }
+  .hero-cue::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--ivory-dim);
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade {
+    to { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1, .hero-sub, .hero-cue {
+      animation: none; opacity: 1; transform: none;
+    }
+  }
+
+  /* ---------- Divider motif ---------- */
+  .divider {
+    display: flex;
+    justify-content: center;
+    padding: 56px 0 0;
+  }
+  .divider svg { width: 140px; height: 20px; opacity: 0.55; }
+
+  /* ---------- Intro ---------- */
+  .intro {
+    padding: 96px 0 108px;
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  .intro-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.3;
+    color: var(--ivory);
+    border-left: 2px solid var(--brick);
+    padding-left: 24px;
+  }
+  .intro-body p { color: var(--ivory-dim); max-width: 58ch; }
+  .intro-body p:first-child { color: var(--ivory); }
+  @media (max-width: 760px) {
+    .intro-grid { grid-template-columns: 1fr; }
+    .intro-quote { border-left: none; border-top: 2px solid var(--brick); padding-left: 0; padding-top: 18px; }
+  }
+
+  /* ---------- Landmark sections ---------- */
+  .landmark {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .landmark-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(32px, 6vw, 72px);
+    align-items: center;
+  }
+  .landmark.alt .landmark-grid { grid-template-columns: 0.9fr 1.1fr; }
+  .landmark.alt .landmark-media { order: 2; }
+  .landmark.alt .landmark-text  { order: 1; }
+
+  @media (max-width: 760px) {
+    .landmark-grid,
+    .landmark.alt .landmark-grid { grid-template-columns: 1fr; }
+    .landmark.alt .landmark-media,
+    .landmark.alt .landmark-text { order: initial; }
+  }
+
+  .landmark-text h2 {
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    margin-bottom: 14px;
+  }
+  .landmark-text .eyebrow-caption { display: block; margin-bottom: 6px; }
+  .landmark-text p { color: var(--ivory-dim); margin-top: 16px; }
+
+  .frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+  }
+  .frame::before {
+    content: "";
+    position: absolute; inset: 0;
+  }
+  .frame img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 2;
+  }
+  .frame-label {
+    position: absolute; inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    color: rgba(243, 233, 216, 0.55);
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .frame.howrah   { aspect-ratio: 16 / 9; }
+  .frame.howrah::before   { background: linear-gradient(160deg, var(--teal), var(--bg-panel)); }
+
+  .frame.victoria { aspect-ratio: 4 / 3; }
+  .frame.victoria::before { background: linear-gradient(160deg, #6b5a44, var(--bg-panel)); }
+
+  .frame.rosogolla { aspect-ratio: 1 / 1; }
+  .frame.rosogolla::before { background: linear-gradient(160deg, var(--marigold), var(--bg-panel)); }
+
+  /* ---------- Taste section (rosogolla) ---------- */
+  .taste .landmark-text h2 { color: var(--ivory); }
+  .taste .eyebrow-caption { color: var(--marigold); font-style: normal; }
+  .landmark#howrah .eyebrow-caption   { color: var(--teal); font-style: normal; }
+  .landmark#victoria .eyebrow-caption { color: var(--ivory-dim); font-style: normal; }
+
+  /* ---------- Closing ---------- */
+  .closing {
+    padding: 120px 0 90px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  .closing p {
+    margin: 0 auto;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+    color: var(--ivory);
+    max-width: 20ch;
+    line-height: 1.35;
+  }
+
+  footer {
+    padding: 28px clamp(20px, 5vw, 56px) 40px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ivory-dim);
+  }
+
+</style>
+</head>
+<body>
+
+  <header class="nav" id="siteNav">
+    <a class="nav-mark" href="#top">Kolkata</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#howrah">Howrah Bridge</a></li>
+      <li><a href="#victoria">Victoria Memorial</a></li>
+      <li><a href="#rosogolla">Rosogolla</a></li>
+    </ul>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <h1>Kolkata</h1>
+        <p class="hero-sub">A river city of trams, bridges, and everyday poetry — the place I still call home.</p>
+        <div class="hero-cue">Scroll to explore</div>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 10 Q 17.5 0, 35 10 T 70 10 T 105 10 T 140 10"
+              fill="none" stroke="#E5A03C" stroke-width="1.4" />
+      </svg>
+    </div>
+
+    <section class="intro" id="about">
+      <div class="wrap intro-grid">
+        <p class="intro-quote">Kolkata doesn't perform for visitors. It simply continues, the way it always has.</p>
+        <div class="intro-body">
+          <p>For over three centuries, Kolkata has been the intellectual and cultural heart of eastern India — first as the capital of British India, later as the city that gave the country Nobel laureates, filmmakers, and a literary tradition few places can match.</p>
+          <p>It moves at its own pace: mornings over tea and newspapers, afternoons in College Street's bookstalls, evenings along the Hooghly as the sky turns the colour of the water. This page is a small, personal tour of three things that, to me, are simply what Kolkata looks like.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landmark" id="howrah">
+      <div class="wrap landmark-grid">
+        <div class="landmark-media">
+          <div class="frame howrah">
+            <div class="frame-label">howrah.jpg</div>
+            <img src="howrah.jpg" alt="Howrah Bridge spanning the Hooghly River, Kolkata"
+                 onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="landmark-text">
+          <span class="eyebrow-caption">Rabindra Setu, opened 1943</span>
+          <h2>Howrah Bridge</h2>
+          <p>Every morning, close to a hundred thousand vehicles and more than a hundred thousand people cross this cantilever bridge over the Hooghly River — one of the busiest of its kind anywhere in the world. It was assembled without a single nut or bolt; its steel is held together entirely by rivets, a detail that still surprises people the first time they hear it.</p>
+          <p>At sunrise, with river traffic below and the city waking up around it, it's hard to imagine Kolkata without its silhouette.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landmark alt" id="victoria">
+      <div class="wrap landmark-grid">
+        <div class="landmark-media">
+          <div class="frame victoria">
+            <div class="frame-label">Victoria.jpg</div>
+            <img src="victoria.jpg" alt="The Victoria Memorial, a white marble building in Kolkata"
+                 onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="landmark-text">
+          <span class="eyebrow-caption">White marble, Indo-Saracenic design, completed 1921</span>
+          <h2>Victoria Memorial</h2>
+          <p>Built from the same white Makrana marble as the Taj Mahal, the Victoria Memorial took fifteen years to complete and now serves as a museum rather than a monument to empire. Its domed silhouette rises over sixty-four acres of gardens, reflecting pools, and quiet paths.</p>
+          <p>On any given evening those grounds fill with families, students, and couples simply out for a walk — a building that has outlived the purpose it was built for, and become something the city actually uses.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landmark taste" id="rosogolla">
+      <div class="wrap landmark-grid">
+        <div class="landmark-media">
+          <div class="frame rosogolla">
+            <div class="frame-label">rosogolla.jpg</div>
+            <img src="rosogolla.jpg" alt="A plate of rosogolla, a syrupy Bengali sweet"
+                 onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="landmark-text">
+          <span class="eyebrow-caption">Chhena and semolina, cooked light in syrup</span>
+          <h2>Rosogolla</h2>
+          <p>No Bengali celebration is complete without a plate of these — spongy balls of fresh cottage cheese, barely sweetened, floating in clear syrup. The sweet is generally credited to Nabin Chandra Das, a Kolkata confectioner working in the 1860s.</p>
+          <p>West Bengal and neighbouring Odisha have spent years — and a formal GI dispute — arguing over whose rosogolla came first. Either way, the version made in Kolkata's old sweet shops is the one I grew up on.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap">
+        <p>Some cities you visit.<br>Kolkata is one you carry with you.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    A small page for Kolkata, my native city.
+  </footer>
+
+  <script>
+    var nav = document.getElementById('siteNav');
+    function updateNav() {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+  </script>
+
+</body>
+</html>
