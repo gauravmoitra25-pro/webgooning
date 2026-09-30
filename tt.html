@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Time Table</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 25px;
+            background-color: #00ff00;
+            font-family: "Times New Roman", serif;
+        }
+
+        .timetable-container {
+            width: 850px;
+            margin: 0 auto;
+            background-color: #add8e6;
+            border: 8px solid #ff4b00;
+            box-sizing: border-box;
+        }
+
+        .title {
+            height: 75px;
+            background-color: #d28bb5;
+            border-bottom: 3px solid #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            background-color: #add8e6;
+        }
+
+        th,
+        td {
+            border: 2px solid #777;
+            padding: 12px;
+            text-align: left;
+            vertical-align: middle;
+            font-size: 19px;
+        }
+
+        th {
+            height: 50px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        td {
+            height: 72px;
+        }
+
+        /* Column widths */
+        .day {
+            width: 21%;
+        }
+
+        .period {
+            width: 21%;
+        }
+
+        .break {
+            width: 7%;
+        }
+
+        .break-cell {
+            text-align: center;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        .break-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            letter-spacing: 10px;
+            font-size: 18px;
+        }
+
+        .subject {
+            text-align: left;
+            line-height: 1.05;
+        }
+
+        .day-name {
+            text-align: left;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="timetable-container">
+
+        <div class="title">
+            TIME TABLE
+        </div>
+
+        <table>
+
+            <!-- HEADER -->
+            <tr>
+                <th class="day">Lecture/Days</th>
+                <th class="period">I</th>
+                <th class="period">II</th>
+                <th class="break"></th>
+                <th class="period">III</th>
+                <th class="period">IV</th>
+            </tr>
+
+            <!-- MONDAY -->
+            <tr>
+                <td class="day-name">MONDAY</td>
+
+                <td class="subject">
+                    INTERNET<br>
+                    AND ITS<br>
+                    APPLICATION
+                </td>
+
+                <td class="subject">
+                    SOFTWARE<br>
+                    ENGINEERING
+                </td>
+
+                <td class="break-cell" rowspan="5">
+                    <div class="break-text">BREAK</div>
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+            </tr>
+
+            <!-- TUESDAY -->
+            <tr>
+                <td class="day-name">TUESDAY</td>
+
+                <td class="subject">
+                    INTERNET<br>
+                    AND ITS<br>
+                    APPLICATION
+                </td>
+
+                <td class="subject">
+                    SOFTWARE<br>
+                    ENGINEERING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+            </tr>
+
+            <!-- WEDNESDAY -->
+            <tr>
+                <td class="day-name">WEDNESDAY</td>
+
+                <td class="subject">
+                    INTERNET<br>
+                    AND ITS<br>
+                    APPLICATION
+                </td>
+
+                <td class="subject">
+                    SOFTWARE<br>
+                    ENGINEERING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+            </tr>
+
+            <!-- THURSDAY -->
+            <tr>
+                <td class="day-name">THURSDAY</td>
+
+                <td class="subject">
+                    INTERNET<br>
+                    AND ITS<br>
+                    APPLICATION
+                </td>
+
+                <td class="subject">
+                    SOFTWARE<br>
+                    ENGINEERING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+            </tr>
+
+            <!-- FRIDAY -->
+            <tr>
+                <td class="day-name">FRIDAY</td>
+
+                <td class="subject">
+                    INTERNET<br>
+                    AND ITS<br>
+                    APPLICATION
+                </td>
+
+                <td class="subject">
+                    SOFTWARE<br>
+                    ENGINEERING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+
+                <td class="subject">
+                    WEB<br>
+                    DESIGNING
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+</html>
